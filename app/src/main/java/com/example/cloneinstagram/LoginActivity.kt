@@ -1,38 +1,42 @@
 package com.example.cloneinstagram
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import androidx.core.widget.addTextChangedListener
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_login.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
-class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener, TextWatcher {
+class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener, TextWatcher,
+    View.OnClickListener {
     private val TAG = "LoginActivity"
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         Log.e(TAG, "onCreate")
 
-        KeyboardVisibilityEvent.setEventListener(this,this)
+        KeyboardVisibilityEvent.setEventListener(this, this)
         login_btn.isEnabled = false
         login_email_input.addTextChangedListener(this)
         login_password_input.addTextChangedListener(this)
+        login_btn.setOnClickListener(this)
+        mAuth = FirebaseAuth.getInstance()
     }
 
     override fun onVisibilityChanged(isKeyboardOpen: Boolean) {
-        if (isKeyboardOpen){
-            scroll_view.scrollTo(0,scroll_view.bottom)
+        if (isKeyboardOpen) {
+            scroll_view.scrollTo(0, scroll_view.bottom)
             create_account_text.visibility = View.GONE
         } else {
-            scroll_view.scrollTo(0,scroll_view.top)
+            scroll_view.scrollTo(0, scroll_view.top)
             create_account_text.visibility = View.VISIBLE
         }
     }
@@ -46,9 +50,25 @@ class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener, Text
     }
 
     override fun afterTextChanged(s: Editable?) {
-        login_btn.isEnabled = login_email_input.text.toString().isNotEmpty() &&
-                login_password_input.text.toString().isNotEmpty()
+        login_btn.isEnabled = validate(
+            login_email_input.text.toString(), login_password_input.text.toString()
+        )
     }
 
+    override fun onClick(view: View) {
+        val email = login_email_input.text.toString()
+        val password = login_password_input.text.toString()
+        if (validate(email, password)) {
+            mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
+                }
+        } else {
+            Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+        }
+    }
 
+    private fun validate(email: String, password: String) =
+        email.isNotEmpty() && password.isNotEmpty()
 }
