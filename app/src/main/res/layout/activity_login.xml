@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".LoginActivity">
+
+        <ImageView
+            android:id="@+id/instagram_image"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/instagram_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/login_email_input"
+            style="@style/edit_profile_input"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/login_input_bg"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instagram_image" />
+
+        <EditText
+            android:id="@+id/login_password_input"
+            style="@style/edit_profile_input"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_input_bg"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_email_input" />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/login_btn_bg"
+            android:stateListAnimator="@animator/login_btn_animator"
+            android:text="Log in"
+            android:textAllCaps="false"
+            android:textColor="@color/login_btn_color"
+          
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_password_input" />
+
+        <TextView
+            android:id="@+id/create_account_text"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/top_border_grey"
+            android:gravity="center"
+
+            android:text="@string/create_account"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

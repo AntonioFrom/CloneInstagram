@@ -1,0 +1,49 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="profile_text" parent="Text">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="profile_text_count" parent="Text">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <dimen name="toolbar_height">50dp</dimen>
+
+    <style name="toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation" tools:targetApi="lollipop">4dp</item>
+    </style>
+
+    <style name="toolbar_image">
+        <item name="android:layout_width">@dimen/toolbar_height</item>
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="toolbar_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:color">@color/black</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+
+
+
+</resources>
