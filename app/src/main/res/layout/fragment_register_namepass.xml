@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/fullname_input"
+        android:id="@+id/register_fullname_input"
         style="@style/edit_profile_input"
         android:layout_marginTop="20dp"
         android:background="@drawable/login_input_bg"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register_title" />
 
     <EditText
-        android:id="@+id/password_input"
+        android:id="@+id/register_password_input"
         style="@style/edit_profile_input"
         android:layout_marginTop="20dp"
         android:background="@drawable/login_input_bg"
@@ -41,7 +41,7 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullname_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_fullname_input" />
 
     <Button
         android:id="@+id/register_btn"
@@ -54,5 +54,5 @@
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input" />
+        app:layout_constraintTop_toBottomOf="@+id/register_password_input" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,14 +63,14 @@
         <TextView
             android:id="@+id/name_label"
             style="@style/edit_profile_label"
-            android:labelFor="@+id/name_input"
+            android:labelFor="@+id/editprofile_name_input"
             android:text="Name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
         <EditText
-            android:id="@+id/name_input"
+            android:id="@+id/editprofile_name_input"
             style="@style/edit_profile_input"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,14 +80,14 @@
         <TextView
             android:id="@+id/username_label"
             style="@style/edit_profile_label"
-            android:labelFor="@+id/username_input"
+            android:labelFor="@+id/editprofile_username_input"
             android:text="Username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_input" />
+            app:layout_constraintTop_toBottomOf="@+id/editprofile_name_input" />
 
         <EditText
-            android:id="@+id/username_input"
+            android:id="@+id/editprofile_username_input"
             style="@style/edit_profile_input"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,14 +97,14 @@
         <TextView
             android:id="@+id/website_label"
             style="@style/edit_profile_label"
-            android:labelFor="@+id/website_input"
+            android:labelFor="@+id/editprofile_website_input"
             android:text="Website"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_input" />
+            app:layout_constraintTop_toBottomOf="@+id/editprofile_username_input" />
 
         <EditText
-            android:id="@+id/website_input"
+            android:id="@+id/editprofile_website_input"
             style="@style/edit_profile_input"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -114,14 +114,14 @@
         <TextView
             android:id="@+id/bio_label"
             style="@style/edit_profile_label"
-            android:labelFor="@+id/bio_input"
+            android:labelFor="@+id/editprofile_bio_input"
             android:text="Bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/website_input" />
+            app:layout_constraintTop_toBottomOf="@+id/editprofile_website_input" />
 
         <EditText
-            android:id="@+id/bio_input"
+            android:id="@+id/editprofile_bio_input"
             style="@style/edit_profile_input"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,19 +136,19 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bio_input" />
+            app:layout_constraintTop_toBottomOf="@+id/editprofile_bio_input" />
 
         <TextView
             android:id="@+id/email_label"
             style="@style/edit_profile_label"
-            android:labelFor="@+id/email_input"
+            android:labelFor="@+id/editprofile_email_input"
             android:text="Email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/private_info_text" />
 
         <EditText
-            android:id="@+id/email_input"
+            android:id="@+id/editprofile_email_input"
             style="@style/edit_profile_input"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
@@ -158,14 +158,14 @@
         <TextView
             android:id="@+id/phone_label"
             style="@style/edit_profile_label"
-            android:labelFor="@+id/phone_input"
+            android:labelFor="@+id/editprofile_phone_input"
             android:text="Phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_input" />
+            app:layout_constraintTop_toBottomOf="@+id/editprofile_email_input" />
 
         <EditText
-            android:id="@+id/phone_input"
+            android:id="@+id/editprofile_phone_input"
             style="@style/edit_profile_input"
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"

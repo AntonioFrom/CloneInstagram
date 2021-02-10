@@ -71,7 +71,6 @@
             android:layout_height="30dp"
             android:background="@drawable/top_border_grey"
             android:gravity="center"
-
             android:text="@string/create_account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
