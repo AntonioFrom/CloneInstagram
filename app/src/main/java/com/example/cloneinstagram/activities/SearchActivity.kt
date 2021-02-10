@@ -1,7 +1,8 @@
-package com.example.cloneinstagram
+package com.example.cloneinstagram.activities
 
 import android.os.Bundle
 import android.util.Log
+import com.example.cloneinstagram.R
 
 class SearchActivity : BaseActivity(1) {
     private val TAG = "SearchActivity"

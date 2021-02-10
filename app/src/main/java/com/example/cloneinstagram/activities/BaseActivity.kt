@@ -1,8 +1,9 @@
-package com.example.cloneinstagram
+package com.example.cloneinstagram.activities
 
 import android.content.Intent
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cloneinstagram.*
 import kotlinx.android.synthetic.main.bottom_navigation_view.*
 
 

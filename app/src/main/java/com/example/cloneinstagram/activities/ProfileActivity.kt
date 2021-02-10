@@ -1,8 +1,10 @@
-package com.example.cloneinstagram
+package com.example.cloneinstagram.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import com.example.cloneinstagram.EditProfileActivity
+import com.example.cloneinstagram.R
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : BaseActivity(4) {
@@ -14,7 +16,7 @@ class ProfileActivity : BaseActivity(4) {
         Log.e(TAG, "onCreate")
 
         profile_btn.setOnClickListener{
-            val intent = Intent(this,EditProfileActivity::class.java)
+            val intent = Intent(this, EditProfileActivity::class.java)
             startActivity(intent)
         }
     }
