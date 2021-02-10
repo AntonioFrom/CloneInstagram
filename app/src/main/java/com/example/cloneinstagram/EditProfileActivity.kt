@@ -35,7 +35,7 @@ class EditProfileActivity : AppCompatActivity() {
                     website_input.setText(user.website, TextView.BufferType.EDITABLE)
                     bio_input.setText(user.bio, TextView.BufferType.EDITABLE)
                     email_input.setText(user.email, TextView.BufferType.EDITABLE)
-                    phone_input.setText(user.phone.toString(), TextView.BufferType.EDITABLE)
+                    phone_input.setText(user.phone, TextView.BufferType.EDITABLE)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
