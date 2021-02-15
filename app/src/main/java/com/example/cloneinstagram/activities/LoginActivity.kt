@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener,
 
     override fun onVisibilityChanged(isKeyboardOpen: Boolean) {
         if (isKeyboardOpen) {
-            create_account_text.visibility = View.GONE
+            create_account_text.visibility = View.GONE 
         } else {
             create_account_text.visibility = View.VISIBLE
         }
