@@ -1,9 +1,16 @@
 package com.example.cloneinstagram
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.example.cloneinstagram.models.User
 import com.example.cloneinstagram.views.PasswordDialog
 import com.google.firebase.auth.AuthCredential
@@ -12,15 +19,24 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
 
+    private lateinit var mStorage: StorageReference
+    private val TAKE_PICTURE_REQUEST_CODE = 1
     private val TAG = "EditProfileActivity"
     private lateinit var mPendingUser: User
     private lateinit var mUser: User
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDatabase: DatabaseReference
+    val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
+    private lateinit var mImageUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +44,13 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
         Log.e(TAG, "onCreate")
 
         close_image.setOnClickListener { finish() }
-        save_image.setOnClickListener { updateprofile() }
+        save_image.setOnClickListener { updateProfile() }
+        change_photo_text.setOnClickListener { takeCameraPicture() }
 
         mAuth = FirebaseAuth.getInstance()
         val userAuth = mAuth.currentUser
         mDatabase = FirebaseDatabase.getInstance().reference
+        mStorage = FirebaseStorage.getInstance().reference
         mDatabase.child("users").child(userAuth!!.uid)
             .addListenerForSingleValueEvent(ValueEventListenerAdapter {
                 mUser = it.getValue(User::class.java)!!
@@ -41,14 +59,59 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
                 editprofile_website_input.setText(mUser.website, TextView.BufferType.EDITABLE)
                 editprofile_bio_input.setText(mUser.bio, TextView.BufferType.EDITABLE)
                 editprofile_email_input.setText(mUser.email, TextView.BufferType.EDITABLE)
-                editprofile_phone_input.setText(
-                    mUser.phone.toString(),
-                    TextView.BufferType.EDITABLE
-                )
+                editprofile_phone_input.setText(mUser.phone, TextView.BufferType.EDITABLE)
             })
     }
 
-    private fun updateprofile() {
+    @SuppressLint("QueryPermissionsNeeded")
+    private fun takeCameraPicture() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null) {
+            val imageFile = createImageFile()
+            mImageUri = FileProvider.getUriForFile(
+                this,
+                "com.example.cloneinstagram.fileprovider", imageFile
+            )
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri)
+            startActivityForResult(intent, TAKE_PICTURE_REQUEST_CODE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == TAKE_PICTURE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val uid = mAuth.currentUser!!.uid
+            mStorage.child("users/$uid/photo").putFile(mImageUri)
+                .addOnCompleteListener { taskSnapshot ->
+                    if (taskSnapshot.isSuccessful) {
+                        val url = taskSnapshot.result.toString()
+                        mStorage.downloadUrl.addOnSuccessListener {
+                            mDatabase.child("users/$uid/photo").setValue(url)
+                                .addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        Log.d(TAG, "onActivityResult: photo saved successfully")
+                                    } else {
+                                        showToast(it.exception!!.message!!)
+                                    }
+                                }
+                        }
+                    } else {
+                        showToast(taskSnapshot.exception!!.message!!)
+                    }
+                }
+        }
+    }
+
+    private fun createImageFile(): File {
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${simpleDateFormat.format(Date())}_",
+            ".jpg",
+            storageDir
+        )
+    }
+
+    private fun updateProfile() {
         mPendingUser = readInputs()
         val error = validate(mPendingUser)
         if (error == null) {
@@ -70,14 +133,14 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
             website = editprofile_website_input.text.toString(),
             bio = editprofile_bio_input.text.toString(),
             email = editprofile_email_input.text.toString(),
-            phone = if (phoneStr.isEmpty()) 0 else phoneStr.toLong()
+            phone = if (phoneStr.isEmpty()) "0" else phoneStr
         )
     }
 
     override fun onPasswordConfirm(password: String) {
         if (password.isNotEmpty()) {
             val credential = EmailAuthProvider.getCredential(mUser.email, password)
-            mAuth.currentUser!!.reauthenticate(credential) {
+            mAuth.currentUser!!.reAuthenticate(credential) {
                 mAuth.currentUser!!.updateEmail(mPendingUser.email) {
                     updateUser(mPendingUser)
                 }
@@ -117,7 +180,7 @@ class EditProfileActivity : AppCompatActivity(), PasswordDialog.Listener {
         }
     }
 
-    private fun FirebaseUser.reauthenticate(credential: AuthCredential, onSuccess: () -> Unit) {
+    private fun FirebaseUser.reAuthenticate(credential: AuthCredential, onSuccess: () -> Unit) {
         reauthenticate(credential).addOnCompleteListener {
             if (it.isSuccessful) {
                 onSuccess()

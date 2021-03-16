@@ -1,13 +1,10 @@
 package com.example.cloneinstagram.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cloneinstagram.R
 import com.example.cloneinstagram.coordinateBtnAndInputs
 import com.example.cloneinstagram.showToast
@@ -15,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
+
 
 class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener,
     View.OnClickListener {

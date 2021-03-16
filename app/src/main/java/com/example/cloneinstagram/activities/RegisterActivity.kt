@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity(), EmailFragment.Listener, NamePassFr
     override fun onNext(email: String) {
         if (email.isNotEmpty()) {
             mEmail = email
-            mAuth.fetchSignInMethodsForEmail(email) {signInMethods ->
+            mAuth.fetchSignInMethodsForEmail(email) { signInMethods ->
                 if (signInMethods.isEmpty()) {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame_layout, NamePassFragment())
@@ -58,12 +58,12 @@ class RegisterActivity : AppCompatActivity(), EmailFragment.Listener, NamePassFr
         }
     }
 
-    override fun onRegister(fullName: String, password: String) {
-        if (fullName.isNotEmpty() && password.isNotEmpty()) {
+    override fun onRegister(fullname: String, password: String) {
+        if (fullname.isNotEmpty() && password.isNotEmpty()) {
             val email = mEmail
             if (email != null) {
                 mAuth.createUserWithEmailAndPassword(email, password) {
-                    mDatabase.createUser(it.user!!.uid, makeUser(fullName, email)) {
+                    mDatabase.createUser(it.user!!.uid, makeUser(fullname, email)) {
                         startHomeActivity()
                     }
                 }
@@ -99,7 +99,6 @@ class RegisterActivity : AppCompatActivity(), EmailFragment.Listener, NamePassFr
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     onSuccess(it.result!!)
-
                 } else {
                     unknowRegisterError(it)
                 }
@@ -158,7 +157,6 @@ class EmailFragment : Fragment() {
         next_btn.setOnClickListener {
             val email = register_email_input.text.toString()
             mListener.onNext(email)
-
         }
     }
 

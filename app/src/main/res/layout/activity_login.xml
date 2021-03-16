@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.cloneinstagram.views.keyboardAwareScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.cloneinstagram.views.keyboardAwareScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scroll_view"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,7 +21,8 @@
             android:src="@drawable/instagram_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/app_name" />
 
         <EditText
             android:id="@+id/login_email_input"
@@ -31,7 +34,8 @@
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/instagram_image" />
+            app:layout_constraintTop_toBottomOf="@+id/instagram_image"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/login_password_input"
@@ -43,7 +47,8 @@
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_email_input" />
+            app:layout_constraintTop_toBottomOf="@+id/login_email_input"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/login_btn"
@@ -57,7 +62,6 @@
             android:text="Log in"
             android:textAllCaps="false"
             android:textColor="@color/login_btn_color"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_password_input" />

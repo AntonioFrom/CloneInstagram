@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cloneinstagram">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -16,8 +25,9 @@
         <activity
             android:name=".activities.LoginActivity"
             android:windowSoftInputMode="adjustResize|stateVisible">
+
         </activity>
-        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".EditProfileActivity"/>
         <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.LikesActivity" />
         <activity android:name=".activities.ShareActivity" />
@@ -28,6 +38,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.cloneinstagram.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+
+            </meta-data>
+        </provider>
     </application>
 
 </manifest>
