@@ -2,4 +2,14 @@
     <string name="app_name">CloneInstagram</string>
     <string name="create_account">Don`t have an account? <b>Sign up</b></string>
     <string name="please_enter_your_password">Please enter your password</string>
+    <string name="_50">50</string>
+    <string name="posts">posts</string>
+    <string name="_100">100</string>
+    <string name="followers">followers</string>
+    <string name="_200">200</string>
+    <string name="following">following</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="share_to">Share to</string>
+    <string name="share">Share</string>
+    <string name="enter_a_caption_here">Enter a caption here...</string>
 </resources>

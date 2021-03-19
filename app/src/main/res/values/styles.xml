@@ -44,6 +44,14 @@
         <item name="android:textSize">19sp</item>
     </style>
 
+    <style name="toolbar_text" parent="toolbar_title">
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">10dp</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">10dp</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
 
 
 </resources>

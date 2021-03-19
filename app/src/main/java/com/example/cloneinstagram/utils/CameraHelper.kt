@@ -11,7 +11,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CameraPictureTaker(private val activity: Activity) {
+class CameraHelper(private val activity: Activity) {
 
     var mImageUri: Uri? =null
     val TAKE_PICTURE_REQUEST_CODE = 1
