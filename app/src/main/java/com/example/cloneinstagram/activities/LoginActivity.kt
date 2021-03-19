@@ -6,8 +6,8 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cloneinstagram.R
-import com.example.cloneinstagram.coordinateBtnAndInputs
-import com.example.cloneinstagram.showToast
+import com.example.cloneinstagram.utils.coordinateBtnAndInputs
+import com.example.cloneinstagram.utils.showToast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
@@ -24,7 +24,11 @@ class LoginActivity : AppCompatActivity(), KeyboardVisibilityEventListener,
         setContentView(R.layout.activity_login)
         Log.e(TAG, "onCreate")
         KeyboardVisibilityEvent.setEventListener(this, this)
-        coordinateBtnAndInputs(login_btn, login_email_input, login_password_input)
+        coordinateBtnAndInputs(
+            login_btn,
+            login_email_input,
+            login_password_input
+        )
         login_btn.setOnClickListener(this)
         create_account_text.setOnClickListener(this)
         mAuth = FirebaseAuth.getInstance()

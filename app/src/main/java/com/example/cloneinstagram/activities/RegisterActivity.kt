@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.cloneinstagram.R
-import com.example.cloneinstagram.coordinateBtnAndInputs
+import com.example.cloneinstagram.utils.coordinateBtnAndInputs
 import com.example.cloneinstagram.models.User
-import com.example.cloneinstagram.showToast
+import com.example.cloneinstagram.utils.showToast
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -153,7 +153,10 @@ class EmailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        coordinateBtnAndInputs(next_btn, register_email_input)
+        coordinateBtnAndInputs(
+            next_btn,
+            register_email_input
+        )
         next_btn.setOnClickListener {
             val email = register_email_input.text.toString()
             mListener.onNext(email)
@@ -182,7 +185,11 @@ class NamePassFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        coordinateBtnAndInputs(register_btn, register_fullname_input, register_password_input)
+        coordinateBtnAndInputs(
+            register_btn,
+            register_fullname_input,
+            register_password_input
+        )
         register_btn.setOnClickListener {
             val fullname = register_fullname_input.text.toString()
             val password = register_password_input.text.toString()
